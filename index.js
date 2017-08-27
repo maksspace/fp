@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const fetchByURL = url => axios.get(url);
 
-// Собираем URL для для запросы курса валют (currencies) относительно (base)
+// Собираем URL для запроса курса валют (currencies) относительно (base)
 const exchangeURL = (base) => (currencies) => {
   return `http://api.fixer.io/latest?base=${base}&symbols=${currencies}`;
 };
@@ -47,7 +47,7 @@ const cartTotal = compose(
   map(itemPrice)
 );
 
-// Выводим в консоль ошибки
+// Выводим в консоль ошибку
 const handleError = e => console.log(`Error: ${e.message}`)
 
 // Список валют, в которые надо перевести базовую
@@ -81,8 +81,6 @@ fetchUSDExchangeRates(currencies)
   // Считаем общую стоимоть корзины в разных валютах
   .then(exchangedTotalCartPrice(selectedCart))
   // Просто печатаем в консоль что получилось
-  .then(totalCartPrice => {
-    console.log('totalCartPrice: ', totalCartPrice);
-  })
+  .then(console.log)
   // Пишем ошибку в консоль (если она есть)
   .catch(handleError)
